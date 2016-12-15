@@ -1,34 +1,33 @@
 package br.com.projetodiamante.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Cliente implements Serializable {
-	private static final long serialVersionUID = 8375649955809085193L;
+public class Produto implements Serializable {
+	private static final long serialVersionUID = -5601091794731893340L;
 	private Long id;
 	private String nome;
-	private Date aniversario;
 	private List<Venda> vendas;
 
 	@Id
-	@GeneratedValue(generator = "Cliente.id", strategy = GenerationType.SEQUENCE)
-	@SequenceGenerator(name = "Cliente.id", sequenceName = "cliente_sequence", allocationSize = 1)
+	@GeneratedValue(generator = "Produto.id", strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "Produto.id", sequenceName = "produto_sequence", allocationSize = 1)
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -36,16 +35,8 @@ public class Cliente implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Date getAniversario() {
-		return aniversario;
-	}
-
-	public void setAniversario(Date aniversario) {
-		this.aniversario = aniversario;
-	}
 	
-	@OneToMany
+	@ManyToMany
 	public List<Venda> getVendas() {
 		return vendas;
 	}
